@@ -10,3 +10,9 @@
     justify-content: center;
     align-items: center;
 }
+
+.sticky-top {
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 1020;
+}

@@ -16,8 +16,15 @@
 
                 <div class="col-lg-9 col-md-8">
                     <div class="product-grid">
-                        <ProductCard v-for="product in filteredProducts" :key="product.id" :product="product"
+                        <ProductCard v-for="product in visibleProducts" :key="product.id" :product="product"
                             @add-to-basket="addToBasket" />
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button v-if="visibleCount < filteredProducts.length" class="btn btn-outline-primary"
+                            @click="viewMore">
+                            View More
+                        </button>
                     </div>
                 </div>
             </div>
@@ -34,6 +41,7 @@ import { useBasketStore } from '@/stores/basketStore';
 
 const products = ref<Product[]>([]);
 const filters = ref<{ category: string; search: string }>({ category: '', search: '' });
+const visibleCount = ref<number>(6);
 
 onMounted(async () => {
     products.value = await fetchProducts();
@@ -50,12 +58,21 @@ const filteredProducts = computed(() => {
     });
 });
 
+const visibleProducts = computed(() => {
+    return filteredProducts.value.slice(0, visibleCount.value);
+});
+
 const applyFilter = (newFilters: { category: string; search: string }) => {
     filters.value = newFilters;
+    visibleCount.value = 6;
 };
 
 const addToBasket = (product: Product) => {
     useBasketStore().addItem(product);
+};
+
+const viewMore = () => {
+    visibleCount.value += 6;
 };
 </script>
 
@@ -66,9 +83,8 @@ const addToBasket = (product: Product) => {
     gap: 2rem;
 }
 
-.sticky-top {
-    position: -webkit-sticky;
-    position: sticky;
-    z-index: 1020;
+.btn-outline-primary {
+    padding: 2px 30px;
+    font-size: 1rem;
 }
 </style>

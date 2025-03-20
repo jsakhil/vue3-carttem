@@ -19,9 +19,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Shop</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Contact</a>
-                        </li>
                     </ul>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -44,7 +41,6 @@
         </nav>
     </header>
 
-    <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -65,7 +61,6 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script setup lang="ts">

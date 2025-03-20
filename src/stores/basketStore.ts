@@ -21,15 +21,19 @@ export const useBasketStore = defineStore('basket', {
         removeItem(productId: number) {
             this.items = this.items.filter((item) => item.id !== productId);
         },
-        updateQuantity(productId: number, quantity: number) {
+        updateQuantity(productId: number, change: number) {
             const item = this.items.find((item) => item.id === productId);
-            if (item) item.quantity = quantity;
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    this.removeItem(productId);
+                }
+            }
         },
     },
     getters: {
-        totalItems: (state): number =>
-            state.items.reduce((sum, item) => sum + item.quantity, 0),
-        totalPrice: (state): number =>
+        totalItems: (state) => state.items.reduce((sum, item) => sum + item.quantity, 0),
+        totalPrice: (state) =>
             state.items.reduce((sum, item) => sum + item.price * item.quantity, 0),
     },
 });
