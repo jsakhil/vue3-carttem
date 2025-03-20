@@ -40,7 +40,7 @@
                         <td>${{ item.price * item.quantity }}</td>
                         <td>
                             <button class="btn btn-danger btn-sm" @click="removeItem(item.id)">
-                                Remove
+                                <i class="bi bi-x-lg"></i>
                             </button>
                         </td>
                     </tr>

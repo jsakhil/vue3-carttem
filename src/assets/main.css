@@ -16,3 +16,25 @@
     position: sticky;
     z-index: 1020;
 }
+
+@media screen and (max-width: 768px) {
+    .sticky-top {
+        position: relative;
+        z-index: 0;
+        top: 0 !important;
+    }
+
+    .navbar-brand img {
+        width: 80px;
+    }
+}
+
+.offcanvas-footer {
+    display: flex;
+    align-items: center;
+    padding: var(--bs-offcanvas-padding-y) var(--bs-offcanvas-padding-x);
+}
+
+.offcanvas.custom-offcanvas {
+    width: 600px;
+}

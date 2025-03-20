@@ -78,6 +78,6 @@ const openModal = () => {
 <style scoped>
 .card-img-top {
     height: 200px;
-    object-fit: cover;
+    object-fit: contain;
 }
 </style>
