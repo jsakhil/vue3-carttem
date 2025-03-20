@@ -9,6 +9,10 @@ export interface Product {
     price: number;
     thumbnail: string;
     category: string;
+    brand: string;
+    stock: string;
+    images: Array<string>;
+    rating: number;
 }
 
 export const fetchProducts = async (): Promise<Product[]> => {

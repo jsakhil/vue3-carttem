@@ -51,6 +51,7 @@
 
 <script setup lang="ts">
 import { type Product } from '@/services/api';
+import { Modal } from 'bootstrap';
 
 const props = defineProps<{
     product: Product;
@@ -66,8 +67,11 @@ const addToBasket = () => {
 
 const openModal = () => {
     const modalId = `#productModal-${props.product.id}`;
-    const modal = new bootstrap.Modal(document.querySelector(modalId));
-    modal.show();
+    const modalElement = document.querySelector(modalId);
+    if (modalElement) {
+        const modal = new Modal(modalElement);
+        modal.show();
+    }
 };
 </script>
 

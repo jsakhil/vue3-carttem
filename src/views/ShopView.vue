@@ -27,7 +27,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
-import { fetchProducts, Product } from '@/services/api';
+import { fetchProducts, type Product } from '@/services/api';
 import Filters from '../components/Filters.vue';
 import ProductCard from '../components/ProductCard.vue';
 import { useBasketStore } from '@/stores/basketStore';
