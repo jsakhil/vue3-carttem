@@ -22,6 +22,17 @@
                     </div>
 
                     <div v-else>
+                        <div class="d-flex justify-content-end mb-3">
+                            <h5 class="me-2 align-self-center">Sort By:</h5>
+                            <select id="sort-by" class="form-select w-auto" v-model="sortBy" @change="applySorting">
+                                <option value="default">Default</option>
+                                <option value="price-asc">Price: Low to High</option>
+                                <option value="price-desc">Price: High to Low</option>
+                                <option value="name-asc">Name: A to Z</option>
+                                <option value="name-desc">Name: Z to A</option>
+                            </select>
+                        </div>
+
                         <div v-if="appliedFilteredProducts.length === 0" class="text-center py-5">
                             <h3>No products found</h3>
                         </div>
@@ -71,8 +82,10 @@ const filters = ref<{
     maxPrice: '',
     rating: '',
 });
+
 const loading = ref<boolean>(true);
 const visibleCount = ref<number>(6);
+const sortBy = ref<string>('default');
 
 const filteredProducts = computed(() => {
     return products.value.filter((product) => {
@@ -117,6 +130,34 @@ const filteredProducts = computed(() => {
 
 const appliedFilteredProducts = ref<Product[]>([]);
 
+const sortedProducts = computed(() => {
+    const defaultSort = [...filteredProducts.value];
+    let sorted = [...appliedFilteredProducts.value];
+
+    switch (sortBy.value) {
+        case 'price-asc':
+            sorted.sort((a, b) => a.price - b.price);
+            break;
+        case 'price-desc':
+            sorted.sort((a, b) => b.price - a.price);
+            break;
+        case 'name-asc':
+            sorted.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case 'name-desc':
+            sorted.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+        case 'default':
+            sorted = defaultSort;
+            break;
+        default:
+            sorted = defaultSort;
+            break;
+    }
+
+    return sorted;
+});
+
 const visibleProducts = computed(() => {
     return appliedFilteredProducts.value.slice(0, visibleCount.value);
 });
@@ -151,6 +192,11 @@ const addToBasket = (product: Product) => {
 
 const viewMore = () => {
     visibleCount.value += 6;
+};
+
+const applySorting = () => {
+    visibleCount.value = 6;
+    appliedFilteredProducts.value = sortedProducts.value;
 };
 </script>
 
