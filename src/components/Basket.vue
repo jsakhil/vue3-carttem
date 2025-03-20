@@ -1,13 +1,11 @@
 <template>
     <div class="basket">
-        <h2>Shopping Basket</h2>
         <ul>
             <li v-for="item in basketItems" :key="item.id">
                 {{ item.title }} - Quantity: {{ item.quantity }} - ${{ item.price * item.quantity }}
                 <button @click="removeItem(item.id)">Remove</button>
             </li>
         </ul>
-        <p>Total: ${{ totalPrice }}</p>
     </div>
 </template>
 
