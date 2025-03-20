@@ -50,7 +50,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue';
 import { type Product } from '@/services/api';
 
 const props = defineProps<{
