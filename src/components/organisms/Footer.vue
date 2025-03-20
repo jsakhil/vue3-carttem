@@ -3,9 +3,9 @@
         <div class="container">
             <div class="row gy-4">
                 <div class="col-md-6">
-                    <a class="navbar-brand align-items-start mb-3" href="#">
+                    <router-link to="/" class="navbar-brand align-items-start mb-3">
                         <img src="/carttem-logo-home.png" alt="Logo" class="d-inline-block align-text-top me-2" />
-                    </a>
+                    </router-link>
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
                         scelerisque nisi eget lorem tincidunt, vel ultricies urna
@@ -30,7 +30,7 @@
                 <div class="col-md-4 offset-md-2">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-decoration-none">Shop</a></li>
+                        <li><router-link to="/shop" class="text-decoration-none">Shop</router-link></li>
                         <li><a href="#" class="text-decoration-none">About Us</a></li>
                         <li><a href="#" class="text-decoration-none">Contact Us</a></li>
                         <li><a href="#" class="text-decoration-none">Terms & Conditions</a></li>

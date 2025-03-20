@@ -2,9 +2,9 @@
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid position-relative">
-                <a class="navbar-brand" href="#">
+                <router-link to="/" class="navbar-brand">
                     <img src="/carttem-logo-home.png" alt="Logo" class="d-inline-block align-text-top me-2" />
-                </a>
+                </router-link>
 
                 <div class="btn-basket-responsive d-lg-none d-flex ms-3">
                     <button class="btn btn-primary position-relative me-3" type="button" data-bs-toggle="offcanvas"
@@ -25,10 +25,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <router-link to="/" class="nav-link active">Home</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Shop</a>
+                            <router-link to="/shop" class="nav-link">Shop</router-link>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
