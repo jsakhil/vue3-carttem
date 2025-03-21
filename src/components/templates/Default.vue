@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<script lang="ts">
-import Header from './components/organisms/Header.vue'
-import Footer from './components/organisms/Footer.vue'
+<script setup lang="ts">
+import Header from '../organisms/Header.vue'
+import Footer from '../organisms/Footer.vue'
 </script>
