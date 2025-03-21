@@ -40,12 +40,8 @@
                         <p><strong>Stock:</strong> {{ product.stock }} available</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            Close
-                        </button>
-                        <button class="btn btn-primary mt-auto" @click="addToBasket">
-                            Add to Basket
-                        </button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary mt-auto" @click="addToBasket">Add to Basket</button>
                     </div>
                 </div>
             </div>
@@ -55,22 +51,22 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { type Product } from '@/services/api';
-import { Modal } from 'bootstrap';
+import { type Product } from '@/types/product'
+import { Modal } from 'bootstrap'
 
 const props = defineProps<{
-    product: Product;
-}>();
+    product: Product
+}>()
 
 const emit = defineEmits<{
-    (e: 'add-to-basket', product: Product): void;
-}>();
+    (e: 'add-to-basket', product: Product): void
+}>()
 
 const showAlert = ref<boolean>(false);
 const alertMessage = ref<string>('');
 
 const addToBasket = () => {
-    emit('add-to-basket', props.product);
+    emit('add-to-basket', props.product)
 
     alertMessage.value = `${props.product.title} has been added to basket!`;
     showAlert.value = true;
@@ -78,16 +74,16 @@ const addToBasket = () => {
     setTimeout(() => {
         showAlert.value = false;
     }, 3000);
-};
+}
 
 const openModal = () => {
-    const modalId = `#productModal-${props.product.id}`;
-    const modalElement = document.querySelector(modalId);
+    const modalId = `#productModal-${props.product.id}`
+    const modalElement = document.querySelector(modalId)
     if (modalElement) {
-        const modal = new Modal(modalElement);
-        modal.show();
+        const modal = new Modal(modalElement)
+        modal.show()
     }
-};
+}
 </script>
 
 <style scoped>
