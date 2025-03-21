@@ -1,5 +1,9 @@
 <template>
     <div class="product-card">
+        <div v-if="showAlert" class="alert alert-success mt-3" role="alert">
+            {{ alertMessage }}
+        </div>
+
         <div class="card h-100">
             <img :src="product.thumbnail" alt="product image" class="card-img-top img-fluid" style="cursor: pointer"
                 @click="openModal" />
@@ -50,6 +54,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { type Product } from '@/services/api';
 import { Modal } from 'bootstrap';
 
@@ -61,8 +66,18 @@ const emit = defineEmits<{
     (e: 'add-to-basket', product: Product): void;
 }>();
 
+const showAlert = ref<boolean>(false);
+const alertMessage = ref<string>('');
+
 const addToBasket = () => {
     emit('add-to-basket', props.product);
+
+    alertMessage.value = `${props.product.title} has been added to basket!`;
+    showAlert.value = true;
+
+    setTimeout(() => {
+        showAlert.value = false;
+    }, 3000);
 };
 
 const openModal = () => {
@@ -79,5 +94,12 @@ const openModal = () => {
 .card-img-top {
     height: 200px;
     object-fit: contain;
+}
+
+.alert.alert-success {
+    position: fixed;
+    top: 0px;
+    right: 20px;
+    z-index: 99999;
 }
 </style>
